@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine Questions ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 400px;
+}
+
+h2 {
+    color: #ff4b5c;
+}
+
+button {
+    padding: 8px 18px;
+    margin: 8px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #ff4b5c;
+    color: white;
+}
+
+#loveImage {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 15px;
+    display: none;
+}
+
+#questionBox {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+#finalMessage {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #ff4b5c;
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Will You Be My Valentine? ❤️</h2>
+
+    <button onclick="startQuestions()">Yes 💕</button>
+    <button id="noBtn">No 😜</button>
+
+    <div id="questionBox"></div>
+
+    <div id="finalMessage">
+        Yayyyy ❤️ You Passed All Tests!  
+        I Love You Forever 💕🎉
+    </div>
+
+    <img id="loveImage" src="D:/Wedding Files/pre wed/DSC01538.JPG" alt="Our Memory">
+
+    <audio id="loveSong">
+        <source src="C:/Users/Hp/Downloads/Eppadi Vandhaayo.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+
+const questions = [
+    {
+        question: "Will you tolerate me forever? 😜",
+        answers: ["Yes 😄", "Of course ❤️"]
+    },
+    {
+        question: "Will you share your food with me? 🍕😂",
+        answers: ["Maybe 🤔", "Okay fine 😅"]
+    },
+    {
+        question: "Will you love me when I'm angry? 😈",
+        answers: ["Always ❤️", "Even more 😍"]
+    },
+    {
+        question: "Do you love me more than biryani? 😏",
+        answers: ["Yes ❤️", "Obviously 😎"]
+    }
+];
+
+let currentQuestion = 0;
+
+function startQuestions() {
+    document.getElementById("loveSong").play();
+    document.getElementById("loveImage").style.display = "block";
+    showQuestion();
+}
+document.getElementById("noBtn").addEventListener("mouseover", function() {
+    const button = this;
+
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 200 - 100;
+
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+});
+
+function showQuestion() {
+    if (currentQuestion < questions.length) {
+        let q = questions[currentQuestion];
+        let html = "<p>" + q.question + "</p>";
+
+        q.answers.forEach(answer => {
+            html += `<button onclick="nextQuestion()">${answer}</button>`;
+        });
+
+        document.getElementById("questionBox").innerHTML = html;
+    } else {
+        document.getElementById("questionBox").innerHTML = "";
+        document.getElementById("finalMessage").style.display = "block";
+    }
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    showQuestion();
+}
+
+</script>
+
+</body>
+</html>
